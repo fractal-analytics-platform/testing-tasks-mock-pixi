@@ -12,6 +12,25 @@ source = "vcs"
 [tool.hatch.build.targets.wheel]
 packages = ["src/mock_pixi_tasks"]
 
+# Clean up the source distribution to avoid big tag.gz files
+[tool.hatch.build.targets.sdist]
+exclude = [
+    "tests", # Exclude tests from the source distribution
+    # Exclude typically large files and directories that are not needed
+    # This might not exists or be named differently in your project
+    # TBD is we want to include these or not
+    "docs",
+    "data",
+    "examples",
+    "notebooks",
+    # Remove all jupyter notebook and checkpoints
+    "**/*.ipynb_checkpoints",
+    "**/*.ipynb",
+    # Pixi lock
+    "pixi.lock", # Should we include this or not depends on https://github.com/fractal-analytics-platform/fractal-server/issues/2624
+    # All things in .gitignore are excluded by default of hatchling
+]
+
 
 # Project metadata (see https://peps.python.org/pep-0621)
 [project]
@@ -24,7 +43,7 @@ authors = [{ name = "Name Surname", email = "name.surname@example.org" }]
 
 # Required Python version and dependencies
 requires-python = ">=3.11, <3.12"
-dependencies = ["fractal-task-tools == 0.0.12", "pydantic"]
+dependencies = ["pydantic"]
 
 [tool.pixi.project]
 channels = ["conda-forge"]
@@ -35,3 +54,6 @@ mock_pixi_tasks = { path = ".", editable = true }
 
 [tool.pixi.environments]
 default = { solve-group = "default" }
+
+[tool.pixi.dependencies]
+fractal-task-tools = "0.0.12.*"
