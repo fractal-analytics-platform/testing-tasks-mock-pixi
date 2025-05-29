@@ -15,10 +15,13 @@ packages = ["src/mock_pixi_tasks"]
 # Clean up the source distribution to avoid big tag.gz files
 [tool.hatch.build.targets.sdist]
 exclude = [
-    "tests", # Exclude tests from the source distribution
+    # Pixi lock excluded by default see https://github.com/fractal-analytics-platform/fractal-server/issues/2624
+    "pixi.lock",
+    # Exclude tests from the source distribution
+    "tests",
     # Exclude typically large files and directories that are not needed
     # This might not exists or be named differently in your project
-    # TBD is we want to include these or not
+    # TBD if we want to include these or not
     "docs",
     "data",
     "examples",
@@ -26,9 +29,7 @@ exclude = [
     # Remove all jupyter notebook and checkpoints
     "**/*.ipynb_checkpoints",
     "**/*.ipynb",
-    # Pixi lock
-    "pixi.lock", # Should we include this or not depends on https://github.com/fractal-analytics-platform/fractal-server/issues/2624
-    # All things in .gitignore are excluded by default of hatchling
+    # NB all things in .gitignore are excluded by default of hatchling
 ]
 
 
