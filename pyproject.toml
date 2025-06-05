@@ -26,6 +26,7 @@ exclude = [
     "data",
     "examples",
     "notebooks",
+    ".github",
     # Remove all jupyter notebook and checkpoints
     "**/*.ipynb_checkpoints",
     "**/*.ipynb",
