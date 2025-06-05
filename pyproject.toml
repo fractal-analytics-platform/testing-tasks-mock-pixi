@@ -49,7 +49,7 @@ dependencies = ["pydantic"]
 
 [tool.pixi.project]
 channels = ["conda-forge"]
-platforms = ["osx-arm64", "linux-64"]
+platforms = ["osx-arm64", "osx-64", "linux-64"]
 
 [tool.pixi.pypi-dependencies]
 mock_pixi_tasks = { path = ".", editable = true }
