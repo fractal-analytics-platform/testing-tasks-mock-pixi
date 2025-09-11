@@ -8,5 +8,5 @@ git push --tags
 
 How to update manifest
 ```
-pixi run fractal-manifest create --package mock-pixi-tasks
+pixi run fractal-manifest create --package mock-pytorch-pixi-tasks
 ```

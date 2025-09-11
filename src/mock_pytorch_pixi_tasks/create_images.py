@@ -1,7 +1,10 @@
 from pydantic import validate_call
 import json
 from typing import Any
+import torch
+import logging
 
+logger = logging.getLogger(__name__)
 
 @validate_call
 def create_images(
@@ -16,17 +19,24 @@ def create_images(
         zarr_dir: Description of `zarr_dir`
         num_images: Description of `num_images`
     """
-    print("[create_images] START")
-    print(f"[create_images] {zarr_dir}")
-    print(f"[create_images] {num_images=}")
+    # Validate that torch is working
+    x = torch.rand(5, 3)
+    logger.info(f"[validate_torch] torch.rand(5, 3) = {x}") 
+    logger.info(f"[validate_torch] torch.__version__ = {torch.__version__}")
+    logger.info(f"[validate_torch] torch.cuda.is_available() = {torch.cuda.is_available()}")
+    
+    
+    logger.info("[create_images] START")
+    logger.info(f"[create_images] {zarr_dir}")
+    logger.info(f"[create_images] {num_images=}")
     zarr_dir = zarr_dir.rstrip("/")
     output = dict(
         image_list_updates=[
             dict(zarr_url=f"{zarr_dir}/{ind}") for ind in range(num_images)
         ]
     )
-    print(f"[create_images] {json.dumps(output)}")
-    print("[create_images] END")
+    logger.info(f"[create_images] {json.dumps(output)}")
+    logger.info("[create_images] END")
     return output
     
 
