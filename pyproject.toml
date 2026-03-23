@@ -43,7 +43,7 @@ authors = [{ name = "Name Surname", email = "name.surname@example.org" }]
 
 # Required Python version and dependencies
 requires-python = ">=3.11, <3.12"
-dependencies = ["ngio", "fractal_task_tools", "torch", "torchvision"]
+dependencies = ["fractal_task_tools"]
 
 [tool.pixi.workspace]
 channels = ["https://prefix.dev/conda-forge"]
